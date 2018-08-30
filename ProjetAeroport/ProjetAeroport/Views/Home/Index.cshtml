@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Aeroport de Cabedocerie";
+}
+
+
+
+<div class="jumbotron" id="jumboHead">
+    <div class="container text-center ">
+        <div class="row ">
+        <div class="col-sm-6 col-sm-offset-3 " id="singleBox">
+            <h2 class="h2">Bienvenue à l'aéroport de Montréal</h2>
+            <h3 class="h3" style="margin-top:125px">
+                Aidez-nous à trouver votre vol !
+            </h3>
+        </div>
+        
+         </div>
+    </div>
+
+</div>
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <form action="" class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" style="width:100%;max-width:100%;padding:20px 0px 20px 0px" placeholder="Entrez le # de votre vol !" />
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" style="padding:10px 10px 10px 10px" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3" style="margin-left:65px">
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="Today()">Aujourd'hui</button>
+                <button class="btn btn-primary" onclick="Demain()">Demain</button>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <button id="btnEntrant" type="button" onclick="AjaxRequestEntrant()" class="btn">Afficher les entrants</button>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn" onclick="AjaxRequestSortant()">Afficher les sortants</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <table class="table table-hover table-responsive">
+                
+                    <tr>
+                        <th class="TableHeader"  onclick="sort('#prevuBtn')" >Prévu <span id="prevuBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader"  onclick="sort('#reviseBtn')" >Révisé <span id="reviseBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader"  onclick="sort('#compagnieBtn')" >Compagnie <span id="compagnieBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader"  onclick="sort('#volBtn')" >Vol <span id="volBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader"  onclick="sort('#destinationBtn')" >Destination <span id="destinationBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader" onclick="sort('#etatBtn')" >État <span  id="etatBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader" onclick="sort('#porteBtn')" >Porte <span  id="porteBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        <th class="TableHeader"  onclick="sort('#suivreBtn')" >Suivre <span id="suivreBtn" class="glyphicon glyphicon-arrow-up"></span></th>
+                        
+                    </tr>
+                
+                <tbody id="CorpTable" >
+              
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--<div class="container text-center">
+<h1>ASP.NET</h1>
+<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>-->

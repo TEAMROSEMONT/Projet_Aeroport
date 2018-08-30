@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ProjetAeroport.Models.Vol>
+
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prevu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Revise)
+        </td>
+        <td style="max-width:200px;">
+           <img src="@Html.DisplayFor(modelItem => item.Logo)"  />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Porte)
+        </td>
+        <td>
+           <a href="@Url.Action("Suivre","Home")">
+               <img src="../image/lien.png" />
+           </a>
+        </td>
+    </tr>
+}
+

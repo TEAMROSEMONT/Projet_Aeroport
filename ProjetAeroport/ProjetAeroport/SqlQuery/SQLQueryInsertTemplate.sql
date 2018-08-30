@@ -1,0 +1,1 @@
+﻿insert into Vol(ID,DESTINATION,ETAT,LOGO,PREVU,REVISE,PORTE,DATE,TYPEVOL) VALUES('HI420','THCLand','Atteri','../image/testQuatre.jpg','4:20','14:20','A42','2018-08-22','Entrant');

@@ -1,0 +1,1 @@
+﻿select * from vol where TYPEVOL = 'Entrant' and DATE = '2018-08-22'

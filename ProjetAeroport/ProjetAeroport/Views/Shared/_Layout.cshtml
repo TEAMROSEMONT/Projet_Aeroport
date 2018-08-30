@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        var jour;
+        var jourS;
+        var typevol;
+        var lastSorted;
+        $(document).ready(function () {
+
+             jour = new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate());
+             jourS = jour.getFullYear() + "/" + jour.getMonth() + "/" + jour.getDate();
+    
+            
+        });
+
+        function sort(btnId) {
+
+            if (lastSorted !== btnId && lastSorted !== "") {
+                $(lastSorted).removeClass();
+                $(lastSorted).addClass('glyphicon glyphicon-arrow-up')
+            }
+
+            $(btnId).toggleClass('glyphicon-arrow-down');
+
+            lastSorted = btnId;
+            
+        }
+        
+        function Today() {
+         
+            if (jour !== new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate())) {
+
+                jour = new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate());
+                jourS = jour.getFullYear() + "/" + jour.getMonth() + "/" + jour.getDate();
+
+                if (typevol == "Entrant") {
+                    AjaxRequestEntrant();
+                } else {
+                    AjaxRequestSortant();
+                }
+
+                
+            }
+        }
+
+        function Demain() {
+            
+
+            if (jour !== function () {
+                var jourz = new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate());
+                jourz.setDate(jourz.getDate() + 1);
+                return jourz;
+            }) {
+                
+                jour = new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate());
+                jour.setDate(jour.getDate() + 1);
+                jourS = jour.getFullYear() + "/" + jour.getMonth() + "/" + jour.getDate();
+
+
+                if (typevol == "Entrant") {
+                    AjaxRequestEntrant();
+                } else {
+                    AjaxRequestSortant();
+                }
+            }
+           
+        }
+
+            function AjaxRequestEntrant() {
+            $.ajax({
+                type: "POST",
+                url: "/Home/Entrant",//Entrant est l'action result qui retourne la vue partiel
+                dataType: "html",
+                data: { 'jour': jourS },
+                success: function(response) {
+                      $('#CorpTable').html(response);
+                    typevol = "Entrant";
+                },
+                error: function () {
+                    alert("There was an error");
+                }
+            });   //Fin $.ajax
+        } //Fin AjaxRequestEntrant()
+
+            function AjaxRequestSortant() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Sortant",//Entrant est l'action result qui retourne la vue partiel
+                    dataType: "html",
+                    data: { 'jour' : jourS },
+                success: function (response) {
+                    $('#CorpTable').html(response);
+                    typevol = "Sortant";
+                },
+                error: function () {
+                    alert("There was an error");
+                }
+            });   //Fin $.ajax
+        } //Fin AjaxRequestSortant()
+
+
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse " style="margin-bottom:0px;" >
+            <div style="margin:auto">
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              <a href="">
+                <img class="nav navbar-nav navbar-" src="../image/logoADM.jpg" alt="Aeroport de montreal"  />
+              </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right" >
+                <ul class="nav navbar-nav " style="font-size:25px;">
+                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Suivre un vol", "Suivre", "Home")</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <div >
+        @RenderBody()
+        <hr />
+        <footer style="text-align:right">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+   
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
